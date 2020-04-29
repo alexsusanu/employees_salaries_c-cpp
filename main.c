@@ -13,16 +13,33 @@
 FILE *ckf_ex();
 /* add new employee. arg is pointer to file from the ckf_ex() func */
 int add_employee(FILE *file);
-
 /*create new file with id name age salary */
 int create_file();
-
+/*read from csv file */
+int read_file();
 /*generate random id */
 int id();
 
 int main()
 {	
     FILE *f = ckf_ex();
+    read_file(f);
+    return 0;
+}
+
+int read_file(FILE *file)
+{	
+    char c;
+    FILE *f = file;
+    if (f == NULL)
+    {
+	printf("Can't read file");
+    }
+    while ((c = fgetc(f)) != EOF)
+    {
+	printf("%c", c);
+    }
+    fclose(f);
     return 0;
 }
 
@@ -100,7 +117,7 @@ FILE *ckf_ex() // return pointer to file if file exists, 'a' mode
 	printf(bold_red);
 	printf("WRITING MODE .. ");
 	printf(reset);
-	f = fopen(file, "a");
+	f = fopen(file, "a+");
 	return f;
     }else
     {
