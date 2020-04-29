@@ -9,14 +9,20 @@
 #define MAX_NAME 30
 #define MAX_FILE 10
 
-int ckf_ex();
-FILE *write_f(const char file[MAX_FILE]);
-FILE *read_f(const char file[MAX_FILE]);
-int add_employee();
+/* check file exists, if yes return pointer to that file in 'a' mode (write&read) */
+FILE *ckf_ex();
+/* add new employee. arg is pointer to file from the ckf_ex() func */
+int add_employee(FILE *file);
+
+/*create new file with id name age salary */
+int create_file();
+
+/*generate random id */
 int id();
 
 int main()
-{
+{	
+    FILE *f = ckf_ex();
     return 0;
 }
 
@@ -79,80 +85,42 @@ int add_employee(FILE *file)
     return 0;
 }
 
-int ckf_ex()
-{
+FILE *ckf_ex() // return pointer to file if file exists, 'a' mode
+{	
     static char file[10];
-    
-    printf("Insert name for file to check if exists: ");
+    char c;
+    FILE *f = NULL;
+    printf("Insert filename: ");
     scanf("%s", file);
+
     if (access(file, F_OK) == 0)
     {	
-	printf("File exists already.");
-	return 0;
-    }
-    return -1;
-}
-FILE *write_f(const char file[MAX_FILE])
-{	
-    FILE *f = NULL;
-    char c;
- 
-    printf("If you wish to write to file, type:\n");
-    printf(bold_blue);
-    printf("w for writing mode\n");
-    printf(reset);
-    bool flag = true;
-    while (flag)
-    {	
+	printf("File exists already.\n");
+	printf("Opening file in ");
+	printf(bold_red);
+	printf("WRITING MODE .. ");
+	printf(reset);
+	f = fopen(file, "a");
+	return f;
+    }else
+    {
+	printf("File doesn't exists\n");
+	printf("If you wish to create new file, type y: ");
 	scanf(" %c", &c);
-	if(c == 'w')
-	{	
-	    if (access(file, W_OK))
-	    {
-		printf("Opening file in ");
-		printf(bold_red);
-		printf("WRITING MODE .. ");
-		printf(reset);
-	    }
-	    f = fopen(file, "a");
-	    flag = false;
-	    return f;
-	}
-	printf("Invalid option. Choose w: ");
+	if(c == 'y')
+	{
+	   create_file();
+	}else
+	{
+	    printf("Abording..\n");
+	    exit(EXIT_FAILURE);
+	} 
     }
+ 
+    //if (access(file, W_OK))
     return NULL;
 }
     
-FILE *read_f(const char file[MAX_FILE])
-{	
-    FILE *f = NULL;
-    char c;    
-
-    printf("If you wish to read the file, type:\n");
-    printf(bold_blue);
-    printf("r for writing mode\n");
-    printf(reset);
-    bool flag = true;
-    while (flag)
-    {	
-	scanf(" %c", &c);
-	if(c == 'r')
-	{	
-	    if (access(file, R_OK))
-	    {
-		printf("Opening file in ");
-		printf(bold_red);
-		printf("READ MODE .. ");
-		printf(reset);
-	    }
-	    f = fopen(file, "r");
-	    flag = false;
-	    return f;
-	}
-	printf("Invalid option. Choose r: ");
-    }
-    return NULL;
-}
 
 int create_file() //bold_redunant, as other func create file if not exist
 {	
