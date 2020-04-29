@@ -24,8 +24,8 @@ int id();
 
 int main()
 {	
-    FILE *f = ckf_ex();
-    copy_f(f);
+    //FILE *f = ckf_ex();
+    //copy_f(f);
     return 0;
 }
 
