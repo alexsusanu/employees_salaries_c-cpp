@@ -17,13 +17,33 @@ int add_employee(FILE *file);
 int create_file();
 /*read from csv file */
 int read_file();
+/*back up file */
+int copy_f(FILE *file);
 /*generate random id */
 int id();
 
 int main()
 {	
     FILE *f = ckf_ex();
-    read_file(f);
+    copy_f(f);
+    return 0;
+}
+
+int copy_f(FILE *file)
+{
+    char *c, backup[MAX_FILE];
+    FILE *f = file;
+    FILE *f_target;
+    printf("Insert back up name: ");
+    scanf("%s", backup);
+    f_target = fopen(backup, "w");
+
+    while(fread(&c, sizeof(c), 1, f))
+    {
+	fwrite(&c, sizeof(c), 1, f_target);
+    }
+    fclose(f);
+    fclose(f_target);
     return 0;
 }
 
