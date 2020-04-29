@@ -1,0 +1,13 @@
+char *red = "\033[0;31m";
+char *bold_red = "\033[1;31m";
+char *green = "\033[0;32m";
+char *bold_green = "\033[1;32m";
+char *yellow = "\033[0;33m";
+char *bold_yellow = "\033[01;33m";
+char *blue = "\033[0;34m";
+char *bold_blue= "\033[1;34m";
+char *magenta = "\033[0;35m";
+char *bold_magenta = "\033[1;35m";
+char *cyan = "\033[0;36m";
+char *bold_cyan = "\033[1;36m";
+char *reset = "\033[0m";

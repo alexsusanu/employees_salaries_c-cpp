@@ -1,0 +1,27 @@
+functions:
+DONE 1. create database (cvs file) in "w" mode (trucate to zero if file exists or create new file)
+
+2. read existing file in "r" mode
+
+3.update existing file in "r+" mode
+
+4.add new employee to file in "a" mode
+
+5. make a backup of the file
+
+6. email the file
+
+7. delete the file
+
+8. salary manipulation -> 8.1 get all salaries lowest to highest
+                            8.2/ get all salaries highest to lowest
+                        8.3 total saalries
+                        8.4 average salary
+                        8.5 reduce saalary by %
+
+-------
+
+create menu with above functions
+
+
+
