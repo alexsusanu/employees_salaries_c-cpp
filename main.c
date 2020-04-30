@@ -21,14 +21,33 @@ int read_file();
 int copy_f(FILE *file);
 /*generate random id */
 int id();
+/* read salary*/
+int read_salary(FILE *file);
 
 int main()
 {	
-    //FILE *f = ckf_ex();
-    //copy_f(f);
+    FILE *f = ckf_ex();
+    read_salary(f);
     return 0;
 }
 
+int read_salary(FILE *file)
+{
+    FILE *f = file;
+    char c;
+    int count = 0;
+    while ((c = fgetc(f)) != EOF)
+    {
+	if (c == ',')
+	{
+	    ++count;
+	}
+	if (count == 4)
+	{
+	}
+    }
+    return 0;
+}
 int copy_f(FILE *file)
 {
     char *c, backup[MAX_FILE];
@@ -136,6 +155,7 @@ FILE *ckf_ex() // return pointer to file if file exists, 'a' mode
 	printf("Opening file in ");
 	printf(bold_red);
 	printf("WRITING MODE .. ");
+	printf("\n");
 	printf(reset);
 	f = fopen(file, "a+");
 	return f;
